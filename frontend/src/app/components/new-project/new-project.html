@@ -1,0 +1,13 @@
+<form>
+    <label for="name">Nom du projet:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="projectData.title">
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" [(ngModel)]="projectData.description"></textarea>
+    <label for="image">Image:</label>
+    <input type="text" id="image" name="image" [(ngModel)]="projectData.imageUrl">
+    <label for="technologies">Technologies:</label>
+    <input type="text" id="technologies" name="technologies" [(ngModel)]="projectData.technologies">
+    <label for="github">Lien GitHub:</label>
+    <input type="text" id="github" name="github" [(ngModel)]="projectData.links">
+    <button (click)="onSubmit()">Créer</button>
+</form>>

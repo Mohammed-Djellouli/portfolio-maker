@@ -1,0 +1,35 @@
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class Project {
+  private http  = inject(HttpClient);
+  private baseUrl = `${environment.backendUrl}`;
+
+//service pour les projets
+
+  getProjects(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/projects/${userId}`);
+  }
+
+//fonction pour créer un projet
+createProject(projectData: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    return this.http.post(this.baseUrl, projectData, { headers });
+  }
+
+
+  deleteProject(projectId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.baseUrl}/projects/${projectId}`);
+
+  }
+  
+}
