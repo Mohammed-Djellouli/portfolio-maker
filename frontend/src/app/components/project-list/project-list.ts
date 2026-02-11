@@ -22,7 +22,6 @@ ngOnInit() {
   const userIdUrl = this.router.snapshot.paramMap.get('id');
     const userIdLocal = localStorage.getItem('userId');
     
-    // 2. Assigner à la propriété de la classe (utiliser 'this.')
     this.isOwner = userIdUrl === userIdLocal;
     
     console.log('URL ID:', userIdUrl); // Debug

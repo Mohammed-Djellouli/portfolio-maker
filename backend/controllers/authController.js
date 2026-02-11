@@ -57,6 +57,19 @@ const login = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Server error" });
     }
+
 }
 
-module.exports ={ register, login}
+    const getUserInfos = async (req, res) => {
+        try {
+            const userId = req.params.userId; // Récupérez l'ID de l'utilisateur à partir des paramètres de la requête
+            const userInfos = await User.findById(userId).select('-password'); // Récupérez les projets liés à l'utilisateur
+            res.status(200).json(userInfos);
+        } catch (error) {
+            res.status(500).json({ message: "Server error" });
+        }
+    }
+
+
+
+module.exports ={ register, login, getUserInfos}
