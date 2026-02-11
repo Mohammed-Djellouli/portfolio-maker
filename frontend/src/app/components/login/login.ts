@@ -1,6 +1,7 @@
 import { Component,inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
+import { authState } from '../auth.state';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent {
         console.log('Login successful', response);
         localStorage.setItem('token', response.token);
         localStorage.setItem('userId', response.userId);
+        authState.set(true);
         // Rediriger vers la page d'accueil ou une autre page après le login
         // this.router.navigate(['/home']);
       },
