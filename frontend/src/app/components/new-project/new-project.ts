@@ -20,11 +20,14 @@ export class NewProject implements OnInit {
   public projectData = {
     title: '',
     description: '',
-    imageUrl: '',      
-    projectUrl: '',
-    technologies: '',  
-    links: ''
+    technologies: '', 
+    links:{
+        github: '',
+        liveDemo: ''
+    },
+    imageUrl: '',
   };
+
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
@@ -42,6 +45,11 @@ export class NewProject implements OnInit {
     const finalData = {
       ...this.projectData,
       userId: this.userId, 
+      links:{
+        github: 'http://' + this.projectData.links.github,
+        liveDemo: 'http://' + this.projectData.links.liveDemo
+      },
+      // Convertir la chaîne de technologies en tableau
       technologies: this.projectData.technologies.split(',').map(t => t.trim())
     };
 

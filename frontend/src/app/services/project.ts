@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class Project {
   private http  = inject(HttpClient);
-  private baseUrl = `${environment.backendUrl}`;
+  private baseUrl = `${environment.backendUrl}/projects`;
 
 //service pour les projets
 
   getProjects(userId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/projects/${userId}`);
+    return this.http.get<any[]>(`${this.baseUrl}/${userId}`);
   }
 
 //fonction pour créer un projet
@@ -27,9 +27,8 @@ createProject(projectData: any): Observable<any> {
 
   deleteProject(projectId: string): Observable<any> {
     const token = localStorage.getItem('token');
-    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete(`${this.baseUrl}/projects/${projectId}`);
-
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.delete(`${this.baseUrl}/${projectId}`, { headers });
   }
   
 }

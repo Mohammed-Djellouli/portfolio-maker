@@ -15,15 +15,10 @@ const ProjectSchema = new Schema({
         type : String,
         required : true
     },
-    imageUrl : [{
-        url : {
-            type : String,
-            required : false
-        },
-        publicId : {
-            type:String,
-        },
-    }],
+    imageUrl :{
+        type : String,
+        required : false
+    },
     technologies : {
         type : [String],
         required : false

@@ -3,11 +3,13 @@
     <input type="text" id="name" name="name" [(ngModel)]="projectData.title">
     <label for="description">Description:</label>
     <textarea id="description" name="description" [(ngModel)]="projectData.description"></textarea>
-    <label for="image">Image:</label>
-    <input type="text" id="image" name="image" [(ngModel)]="projectData.imageUrl">
     <label for="technologies">Technologies:</label>
     <input type="text" id="technologies" name="technologies" [(ngModel)]="projectData.technologies">
     <label for="github">Lien GitHub:</label>
-    <input type="text" id="github" name="github" [(ngModel)]="projectData.links">
+    <input type="text" id="github" name="github" [(ngModel)]="projectData.links.github">
+    <label for="live">Lien Live:</label>
+    <input type="text" id="live" name="live" [(ngModel)]="projectData.links.liveDemo">
+    <label for="imageUrl">URL de l'image:</label>
+    <input type="text" id="imageUrl" name="imageUrl" [(ngModel)]="projectData.imageUrl">
     <button (click)="onSubmit()">Créer</button>
 </form>>

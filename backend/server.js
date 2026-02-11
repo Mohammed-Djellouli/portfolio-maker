@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-app.use("/projects", authMiddleware, projectRoutes);
+app.use("/projects", projectRoutes);
 app.use("/", userRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
