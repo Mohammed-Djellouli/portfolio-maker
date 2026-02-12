@@ -71,5 +71,37 @@ const login = async (req, res) => {
     }
 
 
+    const saveProfile = async (req, res) => {
+        try {
+            const urlUserId = req.params.userId; // Récupérez l'ID de l'utilisateur à partir des paramètres de la requête
+            const loggedInUserId = req.auth.userId; // Récupérez l'ID de l'utilisateur connecté à partir du token d'authentification
 
-module.exports ={ register, login, getUserInfos}
+            if (urlUserId !== loggedInUserId) {
+                return res.status(403).json({ message: "Unauthorized" });
+            }
+
+            // Récupérez les champs à mettre à jour à partir du corps de la requête
+            const {firstName,lastName,bio,title,profileImage} = req.body;
+            // Mettez à jour les informations de l'utilisateur dans la base de données
+            const updatedUser = await User.findByIdAndUpdate(
+                loggedInUserId, 
+                { $set: { firstName, lastName, bio, title, profileImage } },
+                { new: true, runValidators: true }
+            ).select('-password');
+            if (!updatedUser) {
+                return res.status(404).json({ message: "User not found" }); 
+            }
+            res.status(200).json({ message: "Profile updated successfully", user: updatedUser });
+    
+        }
+        catch (error) {
+            res.status(500).json({ message: "Server error" }); 
+        } 
+    }
+
+
+
+
+
+
+module.exports ={ register, login, getUserInfos,saveProfile}

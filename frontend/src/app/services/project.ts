@@ -18,17 +18,14 @@ export class Project {
 
 //fonction pour créer un projet
 createProject(projectData: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
-    return this.http.post(this.baseUrl, projectData, { headers });
+    return this.http.post(this.baseUrl, projectData);
   }
 
 
   deleteProject(projectId: string): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.delete(`${this.baseUrl}/${projectId}`, { headers });
+    
+  return this.http.delete(`${this.baseUrl}/${projectId}`);
   }
   
 }
